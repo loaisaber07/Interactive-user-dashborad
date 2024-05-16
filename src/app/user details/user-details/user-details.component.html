@@ -1,0 +1,25 @@
+<div class="container-fluid bg-dark" style="height: 100vh;">
+    <div class="row">
+        <p class="text-white"> Name : {{CurrentUser.data.name}}</p>
+        <p class="text-white"> Pantone_value: {{CurrentUser.data.pantone_value}}</p>
+
+        <p class="text-white"> Color : {{CurrentUser.data.color}}</p>
+
+        <p class="text-white"> Year : {{CurrentUser.data.year}}</p>
+
+        <p class="text-white"> ID : {{CurrentUser.data.id}}</p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <button type="button" class="btn btn-primary" [disabled]="previousFlag"
+                    (click)="previous()">Previous</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary" (click)="back()">Back</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary" [disabled]="nextFlag" (click)="next()">Next</button>
+            </div>
+
+        </div>
+    </div>
+</div>

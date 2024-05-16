@@ -1,0 +1,87 @@
+<div class="container-fluid m-0 p-0 bg-dark " style="height: 100vh;width: 100vw;">
+    <div class="row d-flex justify-content-center" style="height: 15vh;">
+        <div class="col-4 align-self-center">
+            <input class="form-control" type="number" placeholder="search" name="usearch" [(ngModel)]="searchInput"
+                (click)="search(searchInput)">
+        </div>
+    </div>
+
+    <div *ngIf="(searchInput ==null) ||(searchInput==undefined)" class="container-fluid bg-dark"
+        style="height: 100vh; width: 100vw;">
+        <div class="row bg-dark">
+            <ng-container>
+                <div class="card bg-dark col-4" style="width: 18rem; color: white; border: 1px solid black;"
+                    *ngFor="let user of allUser.data ">
+                    <div class="card-body">
+                        <h5 class="card-title">User Details</h5>
+                        <p class="card-text">ID: {{user.id}}
+                        </p>
+                        <p class="card-text">Name: {{user.name}}
+                        </p>
+                        <p class="card-text">Year:{{user.year}}
+                        </p>
+                        <p class="card-text">Color:{{user.color}}
+                        </p>
+                        <p class="card-text">Pantone_Value:{{user.pantone_value }}
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <button class=" btn btn-primary  " [routerLink]="['/UserList',user.id]">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div *ngIf="(searchInput !=null) &&(searchInput!=undefined)" class="container-fluid bg-dark"
+        style="height: 100vh; width: 100vw;">
+        <div class="row bg-dark">
+            <ng-container *ngFor="let user of allUser.data ">
+                <div class="card bg-dark col-4" style="width: 18rem; color: white; border: 1px solid black;"
+                    *ngIf="user.id == searchInput">
+                    <div class="card-body">
+                        <h5 class="card-title">User Details</h5>
+                        <p class="card-text">ID: {{user.id}}
+                        </p>
+                        <p class="card-text">Name: {{user.name}}
+                        </p>
+                        <p class="card-text">Year:{{user.year}}
+                        </p>
+                        <p class="card-text">Color:{{user.color}}
+                        </p>
+                        <p class="card-text">Pantone_Value:{{user.pantone_value }}
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class=" btn btn-primary"
+                                [routerLink]="['/UserList',user.id]">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark" style="height: 25vh;">
+        <div class="row  justify-content-center " style="height: 20vh;">
+            <div class="col-2 align-self-end ">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <button class="btn btn-success" [disabled]="previousDisable">
+                                << </button>
+                        </li>
+                        <li class="page-item"><button class="btn btn-success" (click)="page1(1)">1</button></li>
+                        <li class="page-item"><button class="btn btn-success" (click)="page2(2)">2</button></li>
+                        <li class="page-item">
+                            <button class="btn btn-success" [disabled]="nextDisable">>>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row justify-content-center bg-dark" [hidden]="waitingFlag">
+            <div class=" fa-spin" style="width: fit-content; ">
+                <fa-icon [icon]="spinner" style="color: green;" class="fa fa-spinner fa-spin fa-2x fa-fw"></fa-icon>
+            </div>
+        </div>
+    </div>
+</div>
